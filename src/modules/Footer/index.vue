@@ -1,7 +1,7 @@
 <script setup>
-import { ThemeModeSwitcher } from "@components";
-
 import { CloseIcon } from "@assets/icons/index.js";
+
+import { ThemeModeSwitcher } from "@components/index.js";
 </script>
 
 <template>

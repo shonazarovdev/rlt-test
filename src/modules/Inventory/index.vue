@@ -1,19 +1,24 @@
 <script setup>
-import { ref } from "vue";
+import { Drawer } from "@modules";
+import { ref, watch } from "vue";
 
-const inventory = ref([
-  [
-    { count: 3, src: "/images/item-1.png" },
-    { count: 4, src: "/images/item-2.png" },
-    { count: 2, src: "/images/item-3.png" },
-    null,
-    null,
+const LOCAL_STORAGE_KEY = "inventory";
+
+const inventory = ref(
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [
+    [
+      { count: 3, src: "/images/item-1.png" },
+      { count: 4, src: "/images/item-2.png" },
+      { count: 2, src: "/images/item-3.png" },
+      null,
+      null,
+    ],
+    [null, null, null, null, null],
+    [null, null, null, null, null],
+    [null, null, null, null, null],
+    [null, null, null, null, null],
   ],
-  [null, null, null, null, null],
-  [null, null, null, null, null],
-  [null, null, null, null, null],
-  [null, null, null, null, null],
-]);
+);
 let draggedItem = null;
 let draggedItemRow = null;
 let draggedItemCol = null;
@@ -47,57 +52,94 @@ const drop = (_, targetRow, targetCol) => {
     inventory.value = JSON.parse(JSON.stringify(inventory.value));
   }
 };
+
+const isDrawerOpen = ref(false);
+const selectedItem = ref({ value: null, rowIndex: null, colIndex: null });
+
+const openDrawer = (item, rowIndex, colIndex) => {
+  selectedItem.value = item;
+  selectedItem.rowIndex = rowIndex;
+  selectedItem.colIndex = colIndex;
+  isDrawerOpen.value = true;
+};
+
+const closeDrawer = () => {
+  isDrawerOpen.value = false;
+};
+
+const deleteItem = (newItem) => {
+  inventory.value[selectedItem.rowIndex][selectedItem.colIndex] = newItem;
+  inventory.value = JSON.parse(JSON.stringify(inventory.value));
+  closeDrawer();
+};
+
+watch(
+  inventory,
+  (newInventory) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newInventory));
+  },
+  { deep: true },
+);
 </script>
 
 <template>
-  <table
-    class="rounded-xl overflow-hidden border dark:border-dark_border dark:bg-dark_secondary"
+  <div
+    class="relative border-2 dark:border-dark_border overflow-hidden rounded-xl"
   >
-    <tr
-      v-for="(row, rowIndex) in inventory"
-      :key="rowIndex"
-      class="h-[100px] grid grid-cols-5"
-    >
-      <td
-        v-for="(item, colIndex) in row"
-        :key="colIndex"
-        @dragstart="dragStart(item, $event, rowIndex, colIndex)"
-        @dragover="dragOver"
-        @drop="drop(item, rowIndex, colIndex)"
-        draggable="true"
-        :class="[
-          {
-            'cursor-grab active:cursor-grabbing': item !== null,
-            'active:p-4 active:rounded-xl active:dark:bg-white/10':
-              item !== null,
-          },
-          'flex items-center justify-center border dark:border-dark_border relative size-[100px]',
-        ]"
+    <Drawer
+      :item="selectedItem"
+      @close="closeDrawer"
+      @delete="deleteItem"
+      :open="isDrawerOpen"
+    />
+    <table class="dark:border-dark_border dark:bg-dark_secondary">
+      <tr
+        v-for="(row, rowIndex) in inventory"
+        :key="rowIndex"
+        class="h-[100px] grid grid-cols-5"
       >
-        <div
-          class="relative before:[*] before:w-full before:h-full before:absolute before:top-0 before:left-0 select-none pointer-events-none"
-        >
-          <img
-            v-if="item"
-            class="-z-10 size-[54px]"
-            :src="item.src"
-            alt="Item"
-          />
-        </div>
-        <span
+        <td
+          v-for="(item, colIndex) in row"
+          :key="colIndex"
+          @dragstart="dragStart(item, $event, rowIndex, colIndex)"
+          @dragover="dragOver"
+          @drop="drop(item, rowIndex, colIndex)"
+          draggable="true"
+          @click="openDrawer(item, rowIndex, colIndex)"
           :class="[
             {
-              'absolute bottom-0 right-0 text-[10px] font-medium dark:text-white/40 p-1 size-4 flex items-center border-t-2 border-l-2 dark:border-dark_border rounded-ss-md':
+              'cursor-grab active:cursor-grabbing': item !== null,
+              'active:p-4 active:rounded-xl active:dark:bg-white/10':
                 item !== null,
             },
-            'pointer-events-none',
+            'flex items-center justify-center border-[0.5px] dark:border-dark_border relative w-[101px]',
           ]"
         >
-          {{ item?.count }}
-        </span>
-      </td>
-    </tr>
-  </table>
+          <div
+            class="relative before:[*] before:w-full before:h-full before:absolute before:top-0 before:left-0 select-none pointer-events-none"
+          >
+            <img
+              v-if="item"
+              class="-z-10 size-[54px]"
+              :src="item.src"
+              alt="Item"
+            />
+          </div>
+          <span
+            :class="[
+              {
+                'absolute bottom-0 right-0 text-[10px] font-medium dark:text-white/40 p-1  flex items-center border-t border-l dark:border-dark_border rounded-ss-md':
+                  item !== null,
+              },
+              'pointer-events-none',
+            ]"
+          >
+            {{ item?.count }}
+          </span>
+        </td>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <style scoped></style>
