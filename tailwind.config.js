@@ -18,6 +18,7 @@ export default {
           DEFAULT: "2rem",
           xs: "1rem",
         },
+        maxWidth: "850px",
       },
     },
   },
