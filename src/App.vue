@@ -1,11 +1,14 @@
 <script setup>
-import { Inventory, Profile } from "@modules";
+import { Footer, Inventory, Profile } from "@modules";
 </script>
 
 <template>
   <div>
-    <Profile />
-    <Inventory />
+    <div>
+      <Profile />
+      <Inventory />
+    </div>
+    <Footer />
   </div>
 </template>
 
