@@ -10,6 +10,9 @@ export default {
         dark_primary: "#1d1d1d",
         dark_primary_text: "#ffffff",
       },
+      container: {
+        center: "true",
+      },
     },
   },
   plugins: [],
