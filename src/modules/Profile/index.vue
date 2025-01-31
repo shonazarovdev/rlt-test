@@ -1,10 +1,10 @@
 <script setup>
-import { Profile } from "@modules";
+import { ProfilePicture } from "@components";
 </script>
 
 <template>
-  <div class="text-3xl">
-    <Profile />
+  <div>
+    <ProfilePicture />
   </div>
 </template>
 
