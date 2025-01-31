@@ -13,7 +13,9 @@ import { ThemeModeSwitcher } from "@components/index.js";
       <span class="sr-only">Loading...</span>
     </div>
     <ThemeModeSwitcher />
-    <CloseIcon />
+    <div class="text-black dark:text-white">
+      <CloseIcon />
+    </div>
   </footer>
 </template>
 
