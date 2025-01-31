@@ -4,11 +4,11 @@ import { Footer, Inventory, Profile } from "@modules";
 
 <template>
   <div class="max-w-[850px] mx-auto p-8 min-h-screen flex flex-col gap-6">
-    <div class="flex-1 flex gap-6 max-h-[500px]">
-      <div class="basis-1/3">
+    <div class="flex-1 flex flex-col md:flex-row gap-6 md:max-h-[500px]">
+      <div class="md:basis-1/3">
         <Profile />
       </div>
-      <div class="basis-2/3">
+      <div class="md:basis-2/3">
         <Inventory />
       </div>
     </div>

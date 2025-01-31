@@ -87,7 +87,7 @@ watch(
 
 <template>
   <div
-    class="relative border-2 dark:border-dark_border overflow-hidden rounded-xl"
+    class="h-[350px] md:h-full relative border-2 dark:border-dark_border overflow-hidden rounded-xl"
   >
     <Drawer
       :item="selectedItem"
@@ -96,12 +96,12 @@ watch(
       :open="isDrawerOpen"
     />
     <table
-      class="dark:border-dark_border bg-light_secondary dark:bg-dark_secondary"
+      class="w-full h-full dark:border-dark_border bg-light_secondary dark:bg-dark_secondary"
     >
       <tr
         v-for="(row, rowIndex) in inventory"
         :key="rowIndex"
-        class="h-[100px] grid grid-cols-5"
+        class="w-full h-1/5 grid grid-cols-5"
       >
         <td
           v-for="(item, colIndex) in row"
@@ -116,7 +116,7 @@ watch(
               'cursor-grab active:cursor-grabbing active:p-4 active:rounded-xl active:dark:bg-white/10 focus-within:bg-white/20':
                 item !== null,
             },
-            'flex items-center justify-center border-[0.5px] dark:border-dark_border relative w-[101px]',
+            'flex items-center justify-center border-[0.5px] dark:border-dark_border relative',
           ]"
         >
           <div
@@ -124,7 +124,7 @@ watch(
           >
             <img
               v-if="item"
-              class="-z-10 size-[54px]"
+              class="-z-10 size-10 md:size-[54px]"
               :src="item.src"
               alt="Item"
             />
@@ -132,7 +132,7 @@ watch(
           <span
             :class="[
               {
-                'max-w-[95px] truncate absolute bottom-0 right-0 text-[10px] font-medium dark:text-white/40 p-1 dark:bg-dark_secondary flex items-center border-t border-l dark:border-dark_border rounded-ss-md':
+                'max-w-[95px] truncate absolute bottom-0 right-0 text-[10px] font-medium text-light_primary_text dark:text-white/40 p-1 bg-light_secondary dark:bg-dark_secondary flex items-center border-t border-l dark:border-dark_border rounded-ss-md':
                   item !== null,
               },
               'pointer-events-',

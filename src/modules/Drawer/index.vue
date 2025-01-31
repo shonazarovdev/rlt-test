@@ -39,10 +39,10 @@ const saveItem = () => {
         'right-0': props.open,
         '-right-full': !props.open,
       },
-      'transition-all absolute top-0 bottom-0 w-1/2 bg-light_secondary dark:bg-dark_secondary z-10 border dark:border-dark_border',
+      'transition-all absolute top-0 bottom-0 w-full md:w-1/2 bg-light_secondary dark:bg-dark_secondary z-10 border dark:border-dark_border',
     ]"
   >
-    <div class="w-full h-full p-4">
+    <div class="w-full h-full p-4 flex items-start md:block">
       <button
         role="button"
         @click="$emit('close')"
@@ -52,12 +52,12 @@ const saveItem = () => {
       </button>
 
       <div
-        class="w-full flex items-center justify-center py-[30px] border-b dark:border-dark_border"
+        class="w-full flex items-center justify-center py-4 md:py-[30px] md:border-b dark:border-dark_border"
       >
         <img :src="props.item?.src" alt="" />
       </div>
 
-      <div class="pb-6">
+      <div class="w-[300px] md:w-auto pb-6">
         <div role="status" class="w-full animate-pulse mt-5">
           <div
             class="h-6 bg-gray-200 rounded-lg dark:bg-white/10 w-[90%] mx-auto mb-6"
@@ -86,7 +86,9 @@ const saveItem = () => {
           v-model="quantity"
           class="border dark:border-dark_border w-full h-10 py-[10px] px-3 rounded dark:bg-dark_secondary dark:text-white mb-5"
         />
-        <div class="flex items-center justify-between">
+        <div
+          class="flex items-center justify-end md:justify-between gap-3 md:gap-0"
+        >
           <button
             @click="$emit('close')"
             class="transition-all bg-light_primary dark:bg-white dark:text-black text-sm px-4 py-2 rounded"
