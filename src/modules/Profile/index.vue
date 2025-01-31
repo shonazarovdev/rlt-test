@@ -1,10 +1,13 @@
 <script setup>
-import { ProfilePicture } from "@components";
+import { ProfileInfo, ProfilePicture } from "@components";
 </script>
 
 <template>
-  <div>
+  <div
+    class="h-full dark:bg-dark_secondary rounded-xl border dark:border-dark_border overflow-hidden pt-[18px] px-[14px] pb-6"
+  >
     <ProfilePicture />
+    <ProfileInfo />
   </div>
 </template>
 

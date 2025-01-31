@@ -3,7 +3,7 @@ import { Footer, Inventory, Profile } from "@modules";
 </script>
 
 <template>
-  <div class="min-h-screen p-8 flex flex-col gap-6">
+  <div class="container min-h-screen py-8 flex flex-col gap-6">
     <div class="flex-1 flex gap-6">
       <div class="basis-1/3">
         <Profile />
