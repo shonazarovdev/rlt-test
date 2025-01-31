@@ -130,7 +130,7 @@ watch(
           <span
             :class="[
               {
-                'absolute bottom-0 right-0 text-[10px] font-medium dark:text-white/40 p-1  flex items-center border-t border-l dark:border-dark_border rounded-ss-md':
+                'absolute bottom-0 right-0 text-[10px] font-medium dark:text-white/40 p-1 dark:bg-dark_secondary flex items-center border-t border-l dark:border-dark_border rounded-ss-md':
                   item !== null,
               },
               'pointer-events-none',
