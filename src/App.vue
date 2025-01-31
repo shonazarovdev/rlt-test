@@ -1,10 +1,11 @@
 <script setup>
-import { Profile } from "@modules";
+import { Inventory, Profile } from "@modules";
 </script>
 
 <template>
   <div>
     <Profile />
+    <Inventory />
   </div>
 </template>
 
