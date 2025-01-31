@@ -3,7 +3,7 @@ import { Profile } from "@modules";
 </script>
 
 <template>
-  <div class="text-3xl">
+  <div>
     <Profile />
   </div>
 </template>
