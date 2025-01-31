@@ -57,10 +57,12 @@ const isDrawerOpen = ref(false);
 const selectedItem = ref({ value: null, rowIndex: null, colIndex: null });
 
 const openDrawer = (item, rowIndex, colIndex) => {
-  selectedItem.value = item;
-  selectedItem.rowIndex = rowIndex;
-  selectedItem.colIndex = colIndex;
-  isDrawerOpen.value = true;
+  if (item) {
+    selectedItem.value = item;
+    selectedItem.rowIndex = rowIndex;
+    selectedItem.colIndex = colIndex;
+    isDrawerOpen.value = true;
+  }
 };
 
 const closeDrawer = () => {
