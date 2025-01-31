@@ -22,7 +22,7 @@ const quantity = ref(0);
 watch(
   () => props.item.count,
   (newItem) => {
-    quantity.value = newItem ? newItem : 1;
+    quantity.value = newItem ? newItem : 0;
   },
 );
 
@@ -75,21 +75,29 @@ const saveItem = () => {
 
       <AskToDelete v-if="!confirmDelete" @confirm="handleConfirmDelete" />
 
-      <div v-if="confirmDelete">
+      <div
+        v-else
+        class="absolute bottom-0 right-0 left-0 border-t dark:border-dark_border px-4 py-[18px]"
+      >
         <input
           type="number"
           v-model="quantity"
-          class="border border-gray-300 p-2 rounded dark:bg-dark_secondary dark:text-white"
+          class="border dark:border-dark_border w-full h-10 py-[10px] px-3 rounded dark:bg-dark_secondary dark:text-white mb-5"
         />
-        <button
-          @click="saveItem"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Сохранить
-        </button>
-        <button @click="$emit('close')" class="bg-gray-200 px-4 py-2 rounded">
-          Отмена
-        </button>
+        <div class="flex items-center justify-between">
+          <button
+            @click="$emit('close')"
+            class="transition-all dark:bg-white dark:text-black text-sm px-4 py-2 rounded"
+          >
+            Отмена
+          </button>
+          <button
+            @click="saveItem"
+            class="transition-all bg-delete hover:bg-delete/80 text-sm text-white font-bold py-2 px-4 rounded"
+          >
+            Подтвердить
+          </button>
+        </div>
       </div>
     </div>
   </div>
