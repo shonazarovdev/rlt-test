@@ -94,7 +94,9 @@ watch(
       @delete="deleteItem"
       :open="isDrawerOpen"
     />
-    <table class="dark:border-dark_border dark:bg-dark_secondary">
+    <table
+      class="dark:border-dark_border bg-light_secondary dark:bg-dark_secondary"
+    >
       <tr
         v-for="(row, rowIndex) in inventory"
         :key="rowIndex"
