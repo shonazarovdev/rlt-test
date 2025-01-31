@@ -27,6 +27,7 @@ const dragStart = (item, _, rowIndex, colIndex) => {
   draggedItem = item;
   draggedItemRow = rowIndex;
   draggedItemCol = colIndex;
+  closeDrawer();
 };
 
 const dragOver = (event) => {
@@ -112,8 +113,7 @@ watch(
           @click="openDrawer(item, rowIndex, colIndex)"
           :class="[
             {
-              'cursor-grab active:cursor-grabbing': item !== null,
-              'active:p-4 active:rounded-xl active:dark:bg-white/10':
+              'cursor-grab active:cursor-grabbing active:p-4 active:rounded-xl active:dark:bg-white/10 focus-within:bg-white/20':
                 item !== null,
             },
             'flex items-center justify-center border-[0.5px] dark:border-dark_border relative w-[101px]',

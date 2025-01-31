@@ -51,7 +51,9 @@ const saveItem = () => {
         <CloseIcon />
       </button>
 
-      <div class="w-full flex items-center justify-center py-[30px] border-b">
+      <div
+        class="w-full flex items-center justify-center py-[30px] border-b dark:border-dark_border"
+      >
         <img :src="props.item?.src" alt="" />
       </div>
 
