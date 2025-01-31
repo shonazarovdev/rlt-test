@@ -1,7 +1,8 @@
 <script setup>
+import { AskToDelete } from "@components";
 import { defineEmits, defineProps, ref, watch } from "vue";
 
-import { CloseIcon } from "@assets/icons/index.js";
+import { CloseIcon } from "@assets/icons";
 
 const props = defineProps({
   item: [Object, null],
@@ -9,6 +10,12 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["close", "delete"]);
+
+const confirmDelete = ref(false);
+
+const handleConfirmDelete = (value) => {
+  confirmDelete.value = value;
+};
 
 const quantity = ref(0);
 
@@ -44,13 +51,11 @@ const saveItem = () => {
         <CloseIcon />
       </button>
 
-      <div
-        class="w-full flex items-center justify-center border-b dark:border-dark_border py-[30px]"
-      >
+      <div class="w-full flex items-center justify-center py-[30px]">
         <img :src="props.item?.src" alt="" />
       </div>
 
-      <div class="pb-6 border-b dark:border-dark_border">
+      <div class="pb-6">
         <div role="status" class="w-full animate-pulse mt-5">
           <div
             class="h-6 bg-gray-200 rounded-lg dark:bg-white/10 w-[90%] mx-auto mb-6"
@@ -68,7 +73,9 @@ const saveItem = () => {
         </div>
       </div>
 
-      <div>
+      <AskToDelete v-if="!confirmDelete" @confirm="handleConfirmDelete" />
+
+      <div v-if="confirmDelete">
         <input
           type="number"
           v-model="quantity"

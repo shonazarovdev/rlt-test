@@ -11,6 +11,7 @@ export default {
         dark_secondary: "#262626",
         dark_primary_text: "#ffffff",
         dark_border: "#4D4D4D",
+        delete: "#FA7272",
       },
       container: {
         center: "true",
