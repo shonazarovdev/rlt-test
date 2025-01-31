@@ -10,7 +10,7 @@ const emit = defineEmits(["confirm"]);
   >
     <button
       role="button"
-      class="transition-all w-full py-[11px] rounded-lg bg-delete hover:bg-delete/80 dark:text-white"
+      class="transition-all w-full py-[11px] rounded-lg bg-delete hover:bg-delete/80 text-white font-medium"
       @click="$emit('confirm', true)"
     >
       Удалить предмет

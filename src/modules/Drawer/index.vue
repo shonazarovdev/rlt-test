@@ -39,7 +39,7 @@ const saveItem = () => {
         'right-0': props.open,
         '-right-full': !props.open,
       },
-      'transition-all absolute top-0 bottom-0 w-1/2 dark:bg-dark_secondary z-10 border dark:border-dark_border',
+      'transition-all absolute top-0 bottom-0 w-1/2 bg-light_secondary dark:bg-dark_secondary z-10 border dark:border-dark_border',
     ]"
   >
     <div class="w-full h-full p-4">
@@ -51,7 +51,7 @@ const saveItem = () => {
         <CloseIcon />
       </button>
 
-      <div class="w-full flex items-center justify-center py-[30px]">
+      <div class="w-full flex items-center justify-center py-[30px] border-b">
         <img :src="props.item?.src" alt="" />
       </div>
 
@@ -87,7 +87,7 @@ const saveItem = () => {
         <div class="flex items-center justify-between">
           <button
             @click="$emit('close')"
-            class="transition-all dark:bg-white dark:text-black text-sm px-4 py-2 rounded"
+            class="transition-all bg-light_primary dark:bg-white dark:text-black text-sm px-4 py-2 rounded"
           >
             Отмена
           </button>
