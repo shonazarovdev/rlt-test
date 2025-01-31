@@ -5,7 +5,7 @@ const themeLabel = computed(() => localStorage.getItem("color-theme"));
 
 const handleThemeSwitch = (e) => {
   const isDark = e.target.checked;
-  localStorage.setItem("color-theme", isDark);
+  localStorage.setItem("color-theme", isDark ? "dark" : "light");
 
   if (isDark) {
     document.documentElement.classList.add("dark");
