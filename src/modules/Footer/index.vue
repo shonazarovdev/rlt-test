@@ -1,5 +1,7 @@
 <script setup>
-import CloseIcon from "@assets/icons/CloseIcon.vue";
+import { ThemeModeSwitcher } from "@components";
+
+import { CloseIcon } from "@assets/icons/index.js";
 </script>
 
 <template>
@@ -10,6 +12,7 @@ import CloseIcon from "@assets/icons/CloseIcon.vue";
       <div class="h-9 bg-gray-200 rounded-lg dark:bg-white/10"></div>
       <span class="sr-only">Loading...</span>
     </div>
+    <ThemeModeSwitcher />
     <CloseIcon />
   </footer>
 </template>
