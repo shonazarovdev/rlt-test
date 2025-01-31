@@ -21,7 +21,6 @@ watch(
 
 const saveItem = () => {
   const newItem = { ...props.item, count: quantity.value };
-  console.log(newItem);
   emit("delete", newItem);
 };
 </script>
